@@ -27,12 +27,11 @@ fourcc = cv.VideoWriter_fourcc(*"mp4v")
 out = None 
 
 
-GIF_SECONDS = 8                  # length of the GIF
-GIF_FPS = 10                     # frames per second in the GIF
-GIF_WIDTH = 480                  # smaller = smaller file
-
+GIF_SECONDS = 8                  
+GIF_FPS = 10                    
+GIF_WIDTH = 480                  
 video_fps = capture.get(cv.CAP_PROP_FPS) or 25
-step = max(1, round(video_fps / GIF_FPS))     # keep every 'step'-th frame
+step = max(1, round(video_fps / GIF_FPS))    
 max_frames = GIF_SECONDS * GIF_FPS
 gif_frames = []
 frame_no = 0
@@ -102,7 +101,7 @@ while True:
       small = cv.resize(vis, (GIF_WIDTH, int(vis.shape[0] * GIF_WIDTH / vis.shape[1])))
       gif_frames.append(Image.fromarray(cv.cvtColor(small, cv.COLOR_BGR2RGB)))
 
-    if len(gif_frames) >= max_frames:             # stop once you have enough
+    if len(gif_frames) >= max_frames:            
       break
     cv.imshow("Foreground", fg)
     if cv.waitKey(20) & 0xFF == ord('d'):
